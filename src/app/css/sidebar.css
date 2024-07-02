@@ -1,0 +1,48 @@
+/* styles/sidebar-component.css */
+.nav-link-custom {
+    display: flex;
+    align-items: center;
+    color: #343a40;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-link-custom:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .nav-link-custom:active,
+  .nav-link-custom.active {
+    background-color: #0056b3;
+    color: #fff;
+  }
+  
+  .support-section {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    padding: 0 15px;
+  }
+  
+  .support-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .support-link:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .me-2 {
+    margin-right: 0.5rem;
+  }
+  
