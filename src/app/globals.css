@@ -134,3 +134,19 @@ Button{
   background-color: blue !important;
   color: white !important;
 }
+
+/* Remove blue color and underline from links */
+.nav-link a {
+  color: inherit; /* Inherit color from parent element */
+  text-decoration: none; /* Remove underline */
+}
+
+.nav-link a:hover {
+  color: inherit; /* Ensure color remains consistent on hover */
+  text-decoration: none; /* Remove underline on hover */
+}
+
+/* Optional: Additional styling for Nav.Link if needed */
+.nav-link {
+  color: inherit; /* Ensure color consistency */
+}

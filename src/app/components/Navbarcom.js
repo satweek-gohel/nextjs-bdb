@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { MdOutlineMenuOpen } from 'react-icons/md';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,20 +7,27 @@ import { useAuth } from '../hooks/useAuth';
 import { FaSignOutAlt } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
 import { MdOutlineMenu } from "react-icons/md";
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Navbarcom = ({ handleShow }) => {
   const { user, signOut } = useAuth(); // Assuming you have a custom hook for Firebase Authentication
-  const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleSignOut = async () => {
     try {
       await signOut(); // Call your signOut function from the Firebase Authentication hook
-      router.push('/login'); // Redirect to login after sign-out
     } catch (error) {
       console.error('Error signing out:', error);
     }
   };
+
+  if (!isClient) {
+    return null; // Prevent rendering on the server
+  }
 
   return (
     <>
@@ -56,9 +63,21 @@ const Navbarcom = ({ handleShow }) => {
             {/* Menu Items - Left-aligned on large screens, centered on small screens */}
             {user && (
               <Nav className="mx-auto text-center text-lg-start">
-                <Nav.Link className='mx-2' onClick={() => router.push('/clients')}>Clients</Nav.Link>
-                <Nav.Link className='mx-2' onClick={() => router.push('/projects')}>Projects</Nav.Link>
-                <Nav.Link className='mx-2' onClick={() => router.push('/employees')}>Employees</Nav.Link>
+                <Nav.Link className='mx-2'>
+                  <Link href="/clients" passHref>
+                    Clients
+                  </Link>
+                </Nav.Link>
+                <Nav.Link className='mx-2'>
+                  <Link href="/projects" passHref>
+                    Projects
+                  </Link>
+                </Nav.Link>
+                <Nav.Link className='mx-2'>
+                  <Link href="/employees" passHref>
+                    Employees
+                  </Link>
+                </Nav.Link>
               </Nav>
             )}
 
@@ -71,8 +90,16 @@ const Navbarcom = ({ handleShow }) => {
               </Nav>
             ) : (
               <Nav className="ms-auto d-flex align-items-center">
-                <Button variant="outline-primary" onClick={() => router.push('/login')}>Login</Button>
-                <Button variant="outline-primary" onClick={() => router.push('/support')}><BiSupport /></Button>
+                <Nav.Link>
+                  <Link href="/login" passHref>
+                    <Button variant="outline-primary">Login</Button>
+                  </Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link href="/support" passHref>
+                    <Button variant="outline-primary"><BiSupport /></Button>
+                  </Link>
+                </Nav.Link>
               </Nav>
             )}
           </Navbar.Collapse>
