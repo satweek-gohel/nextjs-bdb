@@ -46,7 +46,7 @@ const Navbarcom = ({ handleShow }) => {
 
           {/* Toggler for Collapsible Navbar */}
           <Navbar.Toggle aria-controls="basic-navbar-nav">
-            < MdOutlineMenu  style={{ fontSize: '1.5rem', color: 'white' }} />
+            <MdOutlineMenu style={{ fontSize: '1.5rem', color: 'white' }} />
           </Navbar.Toggle>
 
           {/* Navbar Collapsible Items */}
@@ -54,26 +54,38 @@ const Navbarcom = ({ handleShow }) => {
             {/* Menu Items - Left-aligned on large screens, centered on small screens */}
             {user && (
               <Nav className="mx-auto text-center text-lg-start">
-                <Link href="/clients" passHref><Nav.Link className='mx-2'>Clients</Nav.Link></Link>
-                <Nav.Link  className='mx-2'>Projects</Nav.Link>
-                <Nav.Link  className='mx-2'>Employees</Nav.Link>
+                <Link href="/clients" passHref>
+                  <Nav.Link className='mx-2'>Clients</Nav.Link>
+                </Link>
+                <Link href="/projects" passHref>
+                  <Nav.Link className='mx-2'>Projects</Nav.Link>
+                </Link>
+                <Link href="/employees" passHref>
+                  <Nav.Link className='mx-2'>Employees</Nav.Link>
+                </Link>
               </Nav>
             )}
 
             {/* Buttons on the Right */}
             {user ? (
               <Nav className="ms-auto d-flex align-items-center">
-                <Button variant="outline-primary" onClick={handleSignOut}> Sign Out <FaSignOutAlt style={{ marginLeft: '5px' }} /></Button>
+                <Button variant="outline-primary" onClick={handleSignOut}>
+                  Sign Out <FaSignOutAlt style={{ marginLeft: '5px' }} />
+                </Button>
               </Nav>
             ) : (
               <Nav className="ms-auto d-flex align-items-center">
-                <Nav.Link href="login">
-                  <Button variant="outline-primary">Login</Button>
-                </Nav.Link>
+                <Link href="/login" passHref>
+                  <Nav.Link>
+                    <Button variant="outline-primary">Login</Button>
+                  </Nav.Link>
+                </Link>
 
-                <Nav.Link href="support">
-                  <Button variant="outline-primary"><BiSupport /></Button>
-                </Nav.Link>
+                <Link href="/support" passHref>
+                  <Nav.Link>
+                    <Button variant="outline-primary"><BiSupport /></Button>
+                  </Nav.Link>
+                </Link>
               </Nav>
             )}
           </Navbar.Collapse>
