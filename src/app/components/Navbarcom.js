@@ -7,6 +7,7 @@ import { useAuth } from '../hooks/useAuth';
 import { FaSignOutAlt } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
 import { MdOutlineMenu } from "react-icons/md";
+import Link from 'next/link';
 
 const Navbarcom = ({ handleShow }) => {
   const { user, signOut } = useAuth(); // Assuming you have a custom hook for Firebase Authentication
@@ -53,9 +54,9 @@ const Navbarcom = ({ handleShow }) => {
             {/* Menu Items - Left-aligned on large screens, centered on small screens */}
             {user && (
               <Nav className="mx-auto text-center text-lg-start">
-                <Nav.Link href="clients" className='mx-2'>Clients</Nav.Link>
-                <Nav.Link href="projects" className='mx-2'>Projects</Nav.Link>
-                <Nav.Link href="employees" className='mx-2'>Employees</Nav.Link>
+                <Link href="/clients"><Nav.Link className='mx-2'>Clients</Nav.Link></Link>
+                <Nav.Link  className='mx-2'>Projects</Nav.Link>
+                <Nav.Link  className='mx-2'>Employees</Nav.Link>
               </Nav>
             )}
 
