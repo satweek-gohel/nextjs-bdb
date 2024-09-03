@@ -15,7 +15,7 @@ const CenteredControls = () => (
     <Button variant="primary" className="mb-3">Add Client</Button>
     <InputGroup className="global-filter">
       <FormControl
-        placeholder="Search..."
+        placeholder="Search...."
       />
     </InputGroup>
   </div>
