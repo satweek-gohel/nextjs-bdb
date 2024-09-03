@@ -54,7 +54,7 @@ const Navbarcom = ({ handleShow }) => {
             {/* Menu Items - Left-aligned on large screens, centered on small screens */}
             {user && (
               <Nav className="mx-auto text-center text-lg-start">
-                <Link href="/clients"><Nav.Link className='mx-2'>Clients</Nav.Link></Link>
+                <Link href={"/clients"}><Nav.Link className='mx-2'>Clients</Nav.Link></Link>
                 <Nav.Link  className='mx-2'>Projects</Nav.Link>
                 <Nav.Link  className='mx-2'>Employees</Nav.Link>
               </Nav>
