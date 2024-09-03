@@ -24,7 +24,7 @@ function GlobalFilter({
         onChange={e => {
           setGlobalFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
         }}
-        placeholder={`Search...`}
+        placeholder={`Search.......`}
       />
     </InputGroup>
   );
