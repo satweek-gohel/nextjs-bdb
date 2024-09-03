@@ -7,14 +7,16 @@ import { useAuth } from '../hooks/useAuth';
 import { FaSignOutAlt } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
 import { MdOutlineMenu } from "react-icons/md";
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Navbarcom = ({ handleShow }) => {
   const { user, signOut } = useAuth(); // Assuming you have a custom hook for Firebase Authentication
+  const router = useRouter();
 
   const handleSignOut = async () => {
     try {
       await signOut(); // Call your signOut function from the Firebase Authentication hook
+      router.push('/login'); // Redirect to login after sign-out
     } catch (error) {
       console.error('Error signing out:', error);
     }
@@ -54,15 +56,9 @@ const Navbarcom = ({ handleShow }) => {
             {/* Menu Items - Left-aligned on large screens, centered on small screens */}
             {user && (
               <Nav className="mx-auto text-center text-lg-start">
-                <Link href="/clients" passHref>
-                  <Nav.Link className='mx-2'>Clients</Nav.Link>
-                </Link>
-                <Link href="/projects" passHref>
-                  <Nav.Link className='mx-2'>Projects</Nav.Link>
-                </Link>
-                <Link href="/employees" passHref>
-                  <Nav.Link className='mx-2'>Employees</Nav.Link>
-                </Link>
+                <Nav.Link className='mx-2' onClick={() => router.push('/clients')}>Clients</Nav.Link>
+                <Nav.Link className='mx-2' onClick={() => router.push('/projects')}>Projects</Nav.Link>
+                <Nav.Link className='mx-2' onClick={() => router.push('/employees')}>Employees</Nav.Link>
               </Nav>
             )}
 
@@ -75,17 +71,8 @@ const Navbarcom = ({ handleShow }) => {
               </Nav>
             ) : (
               <Nav className="ms-auto d-flex align-items-center">
-                <Link href="/login" passHref>
-                  <Nav.Link>
-                    <Button variant="outline-primary">Login</Button>
-                  </Nav.Link>
-                </Link>
-
-                <Link href="/support" passHref>
-                  <Nav.Link>
-                    <Button variant="outline-primary"><BiSupport /></Button>
-                  </Nav.Link>
-                </Link>
+                <Button variant="outline-primary" onClick={() => router.push('/login')}>Login</Button>
+                <Button variant="outline-primary" onClick={() => router.push('/support')}><BiSupport /></Button>
               </Nav>
             )}
           </Navbar.Collapse>
